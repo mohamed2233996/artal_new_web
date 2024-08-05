@@ -1,1 +1,16 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": ".**/*.{js,jsx,ts,tsx}",
+            "useNpm": true,
+            "functions": []
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/**",
+            "dest": ".**/*.js"
+        }
+    ]
+}
