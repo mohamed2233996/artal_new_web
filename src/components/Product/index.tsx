@@ -83,7 +83,7 @@ function Product({ data, type, className }: ProductProps) {
               className="product__thumb__image"
               style={{ height: "100%", width: "100%" }}
             >
-              {data.products.map((img, index) => (
+              {data.products.slice(0, 3).map((img, index) => (
                 <Image
                   priority={true}
                   key={index}

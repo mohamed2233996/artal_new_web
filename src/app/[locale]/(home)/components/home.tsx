@@ -12,16 +12,32 @@ import ShopProducts from "@/sections/ShopProducts";
 import { getProductsByFilter } from "@/utils/getProductsByFilter";
 import { useTranslations } from "next-intl";
 import { Product as IProduct } from "@/types/Product";
+import { Category } from "@/types/Product";
 import { Link } from "@/navigation";
-import SimilarProductsSlider from "@/sections/ProductSlider/Slider";
 import Slider from "react-slick";
 import Product from "@/components/Product";
 import { API_ENDPOINT } from "@/shared/constants";
-import { NextArrow, PrevArrow } from "@/components/Arrows";
+
+import CategorySlider from "@/sections/CategorySlider/CategorySlider";
+import { getCategories } from "@/actions/getCategories";
 
 
+interface Props {
+  categories: Category[];
+  data: HomeData,
+  products: IProduct[];
+  filters: any;
+  sliderSettings: any
+}
 
-export default function Home({ data, products: apisProducts, sliderSettings }: { data: HomeData, categoryId: string, products: Product[], sliderSettings: any; }) {
+
+export default function Home({
+  categories,
+  data,
+  products: apisProducts,
+  sliderSettings,
+  filters 
+}: Props) {
   const scrollRef = useRef();
 
   const t = useTranslations("Store");
@@ -29,7 +45,7 @@ export default function Home({ data, products: apisProducts, sliderSettings }: {
   const [products, setProducts] = useState(apisProducts);
   const [offset] = useState(0);
   const [currentSort] = useState("default");
-  const [filterBy] = useState({
+  const [filterBy, setFilterBy] = useState({
     categoryId: undefined,
     priceFrom: undefined,
     priceTo: undefined,
@@ -42,9 +58,8 @@ export default function Home({ data, products: apisProducts, sliderSettings }: {
       maxPrice: filterBy.priceTo,
       minPrice: filterBy.priceFrom,
       sortBy: currentSort,
-    });
+    }).slice(0, 10)
     setProducts(sortedProducts);
-
   }, [currentSort, filterBy]);
 
   useEffect(() => {
@@ -61,7 +76,7 @@ export default function Home({ data, products: apisProducts, sliderSettings }: {
     arrows: false,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000,
     infinite: false,
     responsive: [
@@ -85,21 +100,85 @@ export default function Home({ data, products: apisProducts, sliderSettings }: {
       // }
     ],
   };
-  console.log(products)
+  console.log(categories)
+  const categoriesM = [
+    {
+      id: "all",
+      name: t('All'),
+    },
+    {
+      id:"3v9zS",
+      name:"عطر 60 م",
+      name_en:" perfume 60 M"
+    },
+    {
+      id:"oUqXR",
+      name:"عطر 50 م",
+      name_en:"perfume 50 M"
+    },
+    {
+      id:"y_WFs",
+      name:"عطر 40 م",
+      name_en:"perfume 40 M"
+    }
 
-  console.log(products)
+  ]
+
   return (
     <>
       <HomeSlider
         data={data.sliders}
         scrollRef={scrollRef}
       />
-      <div className="container">
-        {
-          screenWidth < 775 ? (
-            <div className="col-12 col-md-8 col-lg-9">
+      <div className="category-slide">
+        <div className="container">
+          <CategorySlider
+            categoryData={categories}
+            filterBy={filterBy}
+            setFilterBy={setFilterBy}
+            filters={filters}
+          />
+        </div>
+      </div>
+      <div className="home-produces pb-4">
+        <div className="container">
+          {
+            screenWidth < 775 ? (
+              <div className="col-12 col-md-8 col-lg-9">
 
-              {(!products || products.length === 0) || (screenWidth > 575 && products.length < 2) ? (
+                {(!products || products.length === 0) || (screenWidth > 575 && products.length < 2) ? (
+                  <div
+                    style={{
+                      textAlign: "center",
+                      justifyContent: "center",
+                      alignContent: "center",
+                      height: "400px",
+                    }}
+                  >
+                    <h1>{t('No_Products')}</h1>
+                  </div>
+                ) : (
+                  <>
+                    <div className="home-products-title mb-4 d-flex align-items-center justify-content-between">
+                      <div className="fw-bold">
+                        {t("New_Products")}
+                      </div>
+                      <Link href={"/store"} className="product-name">
+                        {t("View_All")}
+                      </Link>
+                    </div>
+
+                    <ShopProducts
+                      gridColClass="col-12 col-sm-6 col-lg-4"
+                      listColClass="col-12 "
+                      view={"grid"}
+                      data={products.slice(offset, offset + pageLimit)}
+                    />
+                  </>
+                )}
+              </div>
+            ) : (
+              (!products || products.length === 0) ? (
                 <div
                   style={{
                     textAlign: "center",
@@ -111,59 +190,28 @@ export default function Home({ data, products: apisProducts, sliderSettings }: {
                   <h1>{t('No_Products')}</h1>
                 </div>
               ) : (
-                <div className="home-produces">
+                <>
                   <div className="home-products-title mb-4 d-flex align-items-center justify-content-between">
-                    <div>
+                    <div className="fw-bold">
                       {t("New_Products")}
                     </div>
                     <Link href={"/store"} className="product-name">
                       {t("View_All")}
                     </Link>
                   </div>
+                  <Slider {...settings}>
+                    {products.map((p, index) => (
+                      <div key={index} className="product-slide__item">
+                        <Product data={p} />
+                      </div>
+                    ))}
+                  </Slider>
+                </>
+              )
 
-                  <ShopProducts
-                    gridColClass="col-12 col-sm-6 col-lg-4"
-                    listColClass="col-12 "
-                    view={"grid"}
-                    data={products.slice(offset, offset + pageLimit)}
-                  />
-                </div>
-              )}
-            </div>
-          ) : (
-            (!products || products.length === 0) ? (
-              <div
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  alignContent: "center",
-                  height: "400px",
-                }}
-              >
-                <h1>{t('No_Products')}</h1>
-              </div>
-            ) : (
-              <div className="home-produces">
-                <div className="home-products-title mb-4 d-flex align-items-center justify-content-between">
-                  <div>
-                    {t("New_Products")}
-                  </div>
-                  <Link href={"/store"} className="product-name">
-                    {t("View_All")}
-                  </Link>
-                </div>
-                <Slider {...settings}>
-                  {products.map((p, index) => (
-                    <div key={index} className="product-slide__item">
-                      <Product data={p} />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
             )
-
-          )
-        }
+          }
+        </div>
       </div>
 
       <HomeSectionOne data={data.about} scrollRef={scrollRef} />
