@@ -48,6 +48,7 @@ export type Member = {
 };
 
 export type HomeData = {
+  map(arg0: (img: any) => import("react").JSX.Element): import("react").ReactNode;
   sliders: SliderType[];
   about: HomeAboutType;
   services: HomeService[];
