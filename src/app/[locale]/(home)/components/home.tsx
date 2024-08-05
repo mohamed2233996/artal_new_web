@@ -100,7 +100,6 @@ export default function Home({
       // }
     ],
   };
-  console.log(categories)
   const categoriesM = [
     {
       id: "all",
