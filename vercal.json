@@ -2,15 +2,20 @@
     "version": 2,
     "builds": [
         {
-            "src": ".**/*.{js,jsx,ts,tsx}",
-            "useNpm": true,
-            "functions": []
+            "src": "package.json",
+            "use": "@vercel/node",
+            "functions": {
+                "api/**/*.js": {
+                    "memory": 1024,
+                    "maxDuration": 10
+                }
+            }
         }
     ],
     "routes": [
         {
-            "src": "/api/**",
-            "dest": ".**/*.js"
+            "src": "/api/(.*)",
+            "dest": "/api/$1.js"
         }
     ]
 }

@@ -59,34 +59,33 @@ export default function Home({ data, products: apisProducts, sliderSettings }: {
   const settings = {
     dots: false,
     arrows: false,
-    slidesToShow: 6,
+    slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     infinite: false,
-    // prevArrow: <PrevArrow />,
-    // nextArrow: <NextArrow />,
     responsive: [
       {
         breakpoint: 1400,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 992,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 2,
         },
-      }
+      },
+      // {
+      //   breakpoint: 992,
+      //   settings: {
+      //     slidesToShow: 2,
+      //   },
+      // }
     ],
   };
+  console.log(products)
 
   console.log(products)
   return (
