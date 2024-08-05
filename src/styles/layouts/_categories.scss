@@ -1,0 +1,39 @@
+.category-card {
+  position: relative;
+  height: emCal(16, 360);
+  display: block;
+  text-decoration: none;
+  overflow: hidden;
+  &:hover {
+    .category-card__background {
+      transform: scale(1.05);
+    }
+  }
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s ease-out;
+    transform-origin: bottom right;
+    img {
+      @include imgCenter;
+    }
+  }
+  &__content {
+    padding: emCal(16, 50);
+    h3 {
+      @include typo($fsz: emCal(16, 30), $fw: 600);
+      margin-bottom: emCal(30, 20);
+    }
+    h5 {
+      @include typo($fsz: 1em, $fw: 500);
+    }
+  }
+}
+
+.category-one {
+  margin-bottom: remCal(100);
+}

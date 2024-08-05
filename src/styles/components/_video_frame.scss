@@ -1,0 +1,31 @@
+.video-frame {
+  position: relative;
+  &__poster {
+    img {
+      @include imgCenter;
+      height: 489.9px;
+      width: 888.88px;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 768px) {
+      img {
+        height: 489.9px;
+        width: 888.88px;
+      }
+    }
+  }
+  .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: setColor(red);
+  }
+}

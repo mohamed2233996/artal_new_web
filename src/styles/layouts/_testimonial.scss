@@ -1,0 +1,121 @@
+.testimonial {
+  background-color: #f7f5f4;
+  padding: remCal(100) 0;
+  margin-bottom: remCal(100);
+  .slide-nav {
+    @include mq(md) {
+      margin-bottom: emCal(16, 50);
+    }
+    &__item {
+      padding: emCal(16, 5);
+      cursor: pointer;
+      outline: 0;
+      img {
+        @include imgCenter;
+        transition: $transition;
+      }
+      &:hover {
+        img {
+          transform: scale(1.08);
+        }
+      }
+      &.active {
+        img {
+          transform: scale(1.08);
+        }
+      }
+    }
+  }
+  .slide-for {
+    padding-left: emCal(16, 30);
+    @include mq(md) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    &__item {
+      margin-bottom: emCal(16, 50);
+      outline: 0;
+      &__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: emCal(16, 30);
+        .quote-icon {
+          color: #fff;
+          font-size: emCal(16, 15);
+          height: emCal(15, 50);
+          width: emCal(15, 50);
+          background-color: setColor(red);
+          border-radius: 999px;
+          text-align: center;
+          line-height: emCal(15, 50);
+          margin-right: emCal(15, 20);
+        }
+        .customer__info {
+          h3 {
+            @include typo($fsz: emCal(16, 20), $fw: 600);
+            margin-bottom: emCal(20, 8);
+          }
+          h5 {
+            @include typo($fsz: emCal(16, 13), $fw: 400);
+          }
+        }
+        .rate {
+          margin-left: auto;
+        }
+      }
+      &__content {
+        @include typo($fsz: emCal(16, 16), $lh: emCal(16, 28), $fw: 400);
+        color: #444;
+      }
+    }
+  }
+  .testimonial-one__slider-control {
+    a {
+      @include link($fsz: emCal(16, 13), $up: true, $fw: 600);
+      &:first-child {
+        margin-right: emCal(13, 40);
+        i {
+          margin-right: emCal(13, 10);
+        }
+      }
+      &:last-child {
+        i {
+          margin-left: emCal(13, 10);
+        }
+      }
+    }
+  }
+  .slider-dots {
+    list-style: none;
+    li {
+      display: inline-block;
+      margin: 0 emCal(16, 5);
+      @include spaceTrim();
+      &.slick-active {
+        .slider-dot {
+          background-color: rgba($color: #111, $alpha: 0.5);
+        }
+      }
+      .slider-dot {
+        height: emCal(16, 3);
+        width: emCal(16, 30);
+        background-color: rgba($color: #111, $alpha: 0.2);
+      }
+    }
+  }
+  &.-style-2 {
+    margin-bottom: 0;
+    .slide-for {
+      padding-left: 0;
+      padding-right: emCal(16, 30);
+      @include mq(md) {
+        margin-bottom: emCal(16, 50);
+      }
+    }
+    .slide-nav {
+      @include mq(md) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

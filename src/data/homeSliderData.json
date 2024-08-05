@@ -1,0 +1,50 @@
+[
+  {
+    "title": {
+      "main": "Inner beauty out"
+    },
+    "subTitle": "bringing you",
+    "image": "/images/slider/SliderOne/1.png",
+    "btn": {
+      "content": "Appointment",
+      "color": "red"
+    },
+    "animationClass": {
+      "title": "slider-one-title",
+      "subtitle": "slider-one-subtitle",
+      "button": "slider-one-button"
+    }
+  },
+  {
+    "title": {
+      "main": "You feel good"
+    },
+    "subTitle": "When you look good",
+    "image": "/images/slider/SliderOne/2.jpg",
+    "btn": {
+      "content": "Appointment",
+      "color": "red"
+    },
+    "animationClass": {
+      "title": "slider-one-title",
+      "subtitle": "slider-one-subtitle",
+      "button": "slider-one-button"
+    }
+  },
+  {
+    "title": {
+      "main": "Beauty salon"
+    },
+    "subTitle": "We make best makeup",
+    "image": "/images/slider/SliderOne/3.jpg",
+    "btn": {
+      "content": "Appointment",
+      "color": "red"
+    },
+    "animationClass": {
+      "title": "slider-one-title",
+      "subtitle": "slider-one-subtitle",
+      "button": "slider-one-button"
+    }
+  }
+]

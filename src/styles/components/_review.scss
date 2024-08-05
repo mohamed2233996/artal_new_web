@@ -1,0 +1,53 @@
+.review {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: emCal(16, 25);
+    &__avatar {
+      margin-right: emCal(16, 20);
+      img {
+        @include imgCenter($height: emCal(16, 50), $width: emCal(16, 50));
+        border-radius: 999px;
+      }
+    }
+    &__info {
+      h5 {
+        @include typo($fsz: emCal(16, 15), $fw: 600);
+        margin-bottom: emCal(15, 10);
+      }
+      p {
+        @include typo($fsz: emCal(16, 13), $color: setShadeColor(medium));
+      }
+    }
+    &__rate {
+      margin-left: auto;
+    }
+  }
+
+  &__report {
+    @include link($fsz: emCal(16, 13), $color: setShadeColor(medium));
+    text-decoration: underline;
+  }
+
+  &__content-div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__content {
+    @include typo($fsz: emCal(16, 15), $lh: emCal(15, 27));
+    margin-bottom: emCal(16, 20);
+    width: 80%;
+    display: inline-flex
+
+  }
+
+  &__remove-button {
+    margin-bottom: emCal(16, 20);
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    color: red;
+  }
+}

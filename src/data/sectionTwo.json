@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Men's Fragrance",
+    "videoPoster": "/images/introduction/IntroductionTwo/1.jpg",
+    "videoSrc": "https://www.youtube.com/embed/Cs-7dLsjG9Q"
+  },
+  {
+    "name": "Women's Fragrance",
+    "videoPoster": "/images/introduction/IntroductionTwo/1.jpg",
+    "videoSrc": "https://www.youtube.com/embed/xn7jfVWWSio"
+  },
+  {
+    "name": "Body Splash",
+    "videoPoster": "/images/introduction/IntroductionTwo/1.jpg",
+    "videoSrc": "https://www.youtube.com/embed/K3M-czGNUCg"
+  },
+  {
+    "name": "Fragrance Mists",
+    "videoPoster": "/images/introduction/IntroductionTwo/1.jpg",
+    "videoSrc": "https://www.youtube.com/embed/hoPiGLf0ICA"
+  }
+]

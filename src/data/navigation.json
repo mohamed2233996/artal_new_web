@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Home",
+    "to": "/"
+  },
+  {
+    "title": "Services",
+    "to": "/other/services"
+  },
+  {
+    "title": "About",
+    "to": "/other/about"
+  },
+  {
+    "title": "Shop",
+    "to": "/shop/fullwidth-4col"
+  },
+  {
+    "title": "Contact",
+    "to": "/other/contact"
+  }
+]
