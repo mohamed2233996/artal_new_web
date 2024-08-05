@@ -48,7 +48,6 @@ export default function Store({
     });
     setProducts(sortedProducts);
   }, [currentSort, filterBy]);
-  console.log(categories)
   return (
     <>
       <BreadcrumbSection name={t("title")} />
