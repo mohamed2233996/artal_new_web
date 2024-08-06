@@ -98,7 +98,7 @@ export default function CategorySlider({ filters, filterBy, setFilterBy, categor
                             className='categoryItem d-flex flex-column justify-content-center align-items-center'
                         >
                             <span className='category-icon mb-4'>
-                                <Image src={item.image} width={55} height={55} alt={""} />
+                                <Image src={item.categoryImg1} width={55} height={55} alt={""} />
                             </span>
                             <h2>{isAr ? item.name_ar : item.name_en}</h2>
                         </Link>
