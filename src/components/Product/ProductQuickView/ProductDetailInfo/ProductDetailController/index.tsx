@@ -30,6 +30,7 @@ export default function ProductDetailController({
   const { data: session } = useSession();
   const avaiableProduct = data;
 
+
   return (
     <div className="product-detail__controler">
       <Quantity
@@ -43,17 +44,33 @@ export default function ProductDetailController({
 
       {session?.token ? (
         <div style={{ display: "flex", gap: "1em" }}>
-          <LinkingButton
-            height="50px"
-            width="50px"
-            color="white"
-            className={`product__actions__item -round ${classNames({
-              active: inCart,
-            })}`}
-            to="#"
-            onClick={onAddToCart}
-            content={<i className="fas fa-shopping-bag" />}
-          ></LinkingButton>
+          {data.active ? (
+            <LinkingButton
+              height="50px"
+              width="50px"
+              color="white"
+              className={`product__actions__item -round ${classNames({
+                active: inCart,
+              })}`}
+              to="#"
+              onClick={onAddToCart}
+              content={<i className="fas fa-shopping-bag" />}
+            ></LinkingButton>
+          ):(
+            <LinkingButton
+              height="50px"
+              width="50px"
+              color="red"
+              className={`product__actions__item -round`}
+              to="#"
+              onClick={(e) => {
+                alert(
+                  "This product is out of stock. Please check back later."
+                )
+              }}
+              content={<i className="fas fa-shopping-bag" />}
+            ></LinkingButton>
+          )}
           <LinkingButton
             to="#"
             height="50px"
@@ -68,6 +85,7 @@ export default function ProductDetailController({
         </div>
       ) : (
         <div style={{ display: "flex", gap: "1em" }}>
+          {data.active ? (
           <LinkingButton
             height="50px"
             width="50px"
@@ -76,6 +94,21 @@ export default function ProductDetailController({
             to="/login"
             content={<i className="fas fa-shopping-bag" />}
           ></LinkingButton>
+          ) : (
+          <LinkingButton
+            height="50px"
+            width="50px"
+            color="red"
+            className={`product__actions__item -round`}
+            to="#"
+            onClick={(e) => {
+              alert(
+                "This product is out of stock. Please check back later."
+              )
+            }}
+            content={<i className="fas fa-shopping-bag" />}
+            ></LinkingButton>
+          )}
           <LinkingButton
             height="50px"
             width="50px"

@@ -19,7 +19,6 @@ import Product from "@/components/Product";
 import { API_ENDPOINT } from "@/shared/constants";
 
 import CategorySlider from "@/sections/CategorySlider/CategorySlider";
-import { getCategories } from "@/actions/getCategories";
 
 
 interface Props {
@@ -72,13 +71,17 @@ export default function Home({
   }, []);
 
   const settings = {
-    dots: false,
+    dots: true,
     arrows: false,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 3000,
     infinite: false,
+    dotsClass: "categories-slider-dots container",
+        customPaging: () => {
+            return <div className="categories-slider-dot"></div>;
+        },
     responsive: [
       {
         breakpoint: 1400,
@@ -100,28 +103,11 @@ export default function Home({
       // }
     ],
   };
-  const categoriesM = [
-    {
-      id: "all",
-      name: t('All'),
-    },
-    {
-      id:"3v9zS",
-      name:"عطر 60 م",
-      name_en:" perfume 60 M"
-    },
-    {
-      id:"oUqXR",
-      name:"عطر 50 م",
-      name_en:"perfume 50 M"
-    },
-    {
-      id:"y_WFs",
-      name:"عطر 40 م",
-      name_en:"perfume 40 M"
-    }
 
-  ]
+  console.log(products)
+  console.log(categories)
+
+
 
   return (
     <>
@@ -139,7 +125,7 @@ export default function Home({
           />
         </div>
       </div>
-      <div className="home-produces pb-4">
+      <div className="home-produces">
         <div className="container">
           {
             screenWidth < 775 ? (

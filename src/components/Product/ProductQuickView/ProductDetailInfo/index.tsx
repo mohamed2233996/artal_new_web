@@ -76,12 +76,18 @@ export default function ProductDetailInfo({
         <h5>{isAr ? data?.category.name_ar : data?.category.name_en}</h5>
 
         {quickview ? (
+
           <Link href={`/store/product/${data?.id}`}>
             <h2>{isAr ? data?.name_ar : data?.name_en}</h2>
           </Link>
         ) : (
-          <h2>{isAr ? data?.name_ar : data?.name_en}</h2>
-        )}
+          <div className="one_row_prodTap">
+            <h2>{isAr ? data?.name_ar : data?.name_en}</h2>
+            {data.active ? ("") : (
+              <span className="out_of_stock">Out of Stock</span>
+
+            )}
+          </div>)}
 
         <div className="product-detail__content__header__comment-block">
           <Rate currentRate={data?.rating} />

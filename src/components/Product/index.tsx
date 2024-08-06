@@ -79,6 +79,9 @@ function Product({ data, type, className }: ProductProps) {
       {!type || type === "grid" ? (
         <div className={`product ${classNames(className)}`}>
           <div className="product__thumb">
+            {data.active ? (
+              "") : (
+              <span className="out_of_stock">Out of Stock</span>)}
             <span
               className="product__thumb__image"
               style={{ height: "100%", width: "100%" }}
@@ -98,31 +101,49 @@ function Product({ data, type, className }: ProductProps) {
               ))}
             </span>
             <div className="product__thumb__actions">
-              <div className="product-btn" data-tip data-for="cartIcon">
-                {session?.token ? (
-                  <LinkingButton
-                    height="50px"
-                    width="50px"
-                    color="white"
-                    className={`product__actions__item -round ${classNames({
-                      active: inCart,
-                    })}
+              {data.active ? (
+                <div className="product-btn" data-tip data-for="cartIcon">
+                  {session?.token ? (
+                    <LinkingButton
+                      height="50px"
+                      width="50px"
+                      color="white"
+                      className={`product__actions__item -round ${classNames({
+                        active: inCart,
+                      })}
                       `}
-                    to="#"
-                    onClick={handleAddToCart}
-                    content={<i className="fas fa-shopping-bag" />}
-                  ></LinkingButton>
-                ) : (
-                  <LinkingButton
-                    height="50px"
-                    width="50px"
-                    color="white"
-                    className={`product__actions__item -round`}
-                    to="/login"
-                    content={<i className="fas fa-shopping-bag" />}
-                  ></LinkingButton>
-                )}
-              </div>
+                      to="#"
+                      onClick={handleAddToCart}
+                      content={<i className="fas fa-shopping-bag" />}
+                    ></LinkingButton>
+                  ) : (
+                    <LinkingButton
+                      height="50px"
+                      width="50px"
+                      color="white"
+                      className={`product__actions__item -round`}
+                      to="/login"
+                      content={<i className="fas fa-shopping-bag" />}
+                    ></LinkingButton>
+                  )}
+                </div>
+              ) : (
+                <LinkingButton
+                  height="50px"
+                  width="50px"
+                  color="red"
+                  className={`product__actions__item -round`}
+                  to="#"
+                  onClick={(e) => {
+                    alert(
+                      "This product is out of stock. Please check back later."
+                    )
+                  }}
+                  content={<i className="fas fa-shopping-bag" />}
+                ></LinkingButton>
+              )
+              }
+
               <div className="product-btn" data-tip data-for="qvIcon">
                 <LinkingButton
                   height={50 / 14 + "em"}
@@ -179,6 +200,8 @@ function Product({ data, type, className }: ProductProps) {
         <Link href={`/store/product/${data?.id}`}>
           <div className={`product-list ${classNames(className)}`}>
             <div className="product-list__thumb">
+              {data.active ? (
+                "") : (<span className="out_of_stock">Out of Stock</span>)}
               <span className="product-list__thumb__image">
                 {data.products.map((img, index) => (
                   <Image
@@ -220,18 +243,33 @@ function Product({ data, type, className }: ProductProps) {
                 <div className="product__actions">
                   <div className="product-btn">
                     {session?.token ? (
-                      <LinkingButton
-                        height="50px"
-                        width="50px"
-                        color="white"
-                        className={`product__actions__item -round ${classNames({
-                          active: inCart,
-                        })}
+                        data.active ? (
+                          <LinkingButton
+                            height="50px"
+                            width="50px"
+                            color="white"
+                            className={`product__actions__item -round ${classNames({
+                              active: inCart,
+                            })}
                       `}
-                        to="#"
-                        onClick={handleAddToCart}
-                        content={<i className="fas fa-shopping-bag" />}
-                      ></LinkingButton>
+                            to="#"
+                            onClick={handleAddToCart}
+                            content={<i className="fas fa-shopping-bag" />}
+                          ></LinkingButton>) : (
+                          <LinkingButton
+                            height="50px"
+                            width="50px"
+                            color="red"
+                            className={`product__actions__item -round`}
+                            to="#"
+                            onClick={(e) => {
+                              alert(
+                                "This product is out of stock. Please check back later."
+                              )
+                            }}
+                            content={<i className="fas fa-shopping-bag" />}
+                          ></LinkingButton>
+                        )
                     ) : (
                       <LinkingButton
                         height="50px"

@@ -10,6 +10,7 @@ export type ProductImages = {
 };
 
 export type Product = {
+  active: boolean
   id: string;
   name_ar: string;
   name_en: string;

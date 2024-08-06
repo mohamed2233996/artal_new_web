@@ -25,6 +25,8 @@ export default function ProductDetailSlider({ data }: { data: Product }) {
     nextArrow: <NextArrow />,
   };
 
+
+
   return (
     <div className="product-detail__slide-one">
       <Slider {...settings}>
